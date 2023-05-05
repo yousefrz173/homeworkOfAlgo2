@@ -36,7 +36,7 @@ public class BST {
 	
 	public void Insert(int value) { // repetitive
 		Node node = new Node(value);
-		if (root == null) {
+		if (root == null) { 
 			root = node;
 		}
 		Node current = root;
