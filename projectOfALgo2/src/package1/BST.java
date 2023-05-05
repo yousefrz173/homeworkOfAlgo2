@@ -33,15 +33,7 @@ public class BST {
 		}
 		return root;
 	}
-
-	public int inserddd() {
-		return -2;
-	}
-	public void hhh() {
-		System.out.println();
-		System.out.println();
-		System.out.println();
-	}
+	
 	public void Insert(int value) { // repetitive
 		Node node = new Node(value);
 		if (root == null) {
