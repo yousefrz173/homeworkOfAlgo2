@@ -34,6 +34,9 @@ public class BST {
 		return root;
 	}
 
+	public int inser() {
+		return -2;
+	}
 	public void Insert(int value) { // repetitive
 		Node node = new Node(value);
 		if (root == null) {
