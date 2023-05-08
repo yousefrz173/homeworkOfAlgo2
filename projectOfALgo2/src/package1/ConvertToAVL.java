@@ -1,5 +1,7 @@
 package package1;
 
 public class ConvertToAVL {
-	//public 
+	public BST AVLOf(BST tree) {
+		
+	}
 }
