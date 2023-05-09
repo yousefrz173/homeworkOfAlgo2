@@ -14,6 +14,7 @@ public class miladCode {
 	/**
 	 * @param args the command line arguments
 	 */
+
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		BST1 bisetr = new BST1();

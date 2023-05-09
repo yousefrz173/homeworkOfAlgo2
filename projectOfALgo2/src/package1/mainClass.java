@@ -8,16 +8,14 @@ package package1;
 public class mainClass {
 	public static void main(String argvs[]) {
 		BST tree = new BST();
-		tree.insertRandom(10);
-		tree.insertRandom(20);
-		tree.insertRandom(15);
-		tree.insertRandom(5);
-		tree.insertRandom(7);
-		tree.insertRandom(4);
-		tree.insertRandom(3);
+		tree.insert(10);
+		tree.insert(20);
+		tree.insert(15);
+		tree.insert(5);
+		tree.insert(7);
+		tree.insert(4);
+		tree.insert(3);
 		tree.isbst();
-		
-		
 		
 //		// creating an object of the class BTreeLevelOrder
 //		BTreeLevelOrder tree = new BTreeLevelOrder();

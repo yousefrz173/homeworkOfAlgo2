@@ -26,10 +26,10 @@ public class BST {
 		}
 
 		if (value < root.value) {
-			root = insert(value, root.leftChild);
+			root.leftChild = insert(value, root.leftChild);
 		} else {
 			if (value > root.value)
-				root = insert(value, root.rightChild);
+				root.rightChild = insert(value, root.rightChild);
 		}
 		return root;
 	}
@@ -85,6 +85,12 @@ public class BST {
 		return true;
 	}
 
+	public int function(int counter) {
+		if(counter == 5)
+			return 0;
+		return function(++counter) + 1;
+	}
+	
 	public void insertRandom(int value) {
 		Node node = new Node(value);
 		if (root == null) {
