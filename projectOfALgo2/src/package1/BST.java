@@ -33,10 +33,10 @@ public class BST {
 		}
 		return root;
 	}
-	
+
 	public void Insert(int value) { // repetitive
 		Node node = new Node(value);
-		if (root == null) {  
+		if (root == null) {
 			root = node;
 		}
 		Node current = root;
@@ -85,8 +85,6 @@ public class BST {
 		return true;
 	}
 
-	
-	
 	public void insertRandom(int value) {
 		Node node = new Node(value);
 		if (root == null) {
@@ -224,5 +222,50 @@ public class BST {
 			current = current.rightChild;
 		}
 		return null;
+	}
+
+	public void convertBSTtoAVL() {
+		root = convertBSTtoAVL(root);
+	}
+
+	private Node convertBSTtoAVL(Node root) {
+		// store tree nodes in an In-order vector
+		Vector<Node> inOrderVector = new Vector<Node>();
+		storeNodesInVector(root, inOrderVector);
+		return buildTreeFromArray(inOrderVector);
+	}
+
+	private void storeNodesInVector(Node root, Vector<Node> nodes) {
+		if (root != null) {
+			storeNodesInVector(root.leftChild, nodes);
+			nodes.add(root);
+			storeNodesInVector(root.rightChild, nodes);
+		}
+		return;
+	}
+
+	private Node buildTreeFromArray(Vector<Node> nodes) {
+		if (nodes.size() == 0) {
+			return null;
+		}
+		int mid = (nodes.size() / 2);
+		// find mid and make it the root
+		Node root = nodes.get(mid);
+
+		// find the left sub array and store it in a vector
+		Vector<Node> leftSubArray = new Vector<Node>();
+		for (int i = 0; i < mid; i++) {
+			leftSubArray.add(nodes.get(i));
+		}
+		root.leftChild = buildTreeFromArray(leftSubArray);
+
+		// find the right sub array and store it in a vector
+		Vector<Node> rightSubArray = new Vector<Node>();
+		for (int i = mid + 1; i < nodes.size(); i++) {
+			rightSubArray.add(nodes.get(i));
+		}
+		root.rightChild = buildTreeFromArray(rightSubArray);
+
+		return root;
 	}
 }
