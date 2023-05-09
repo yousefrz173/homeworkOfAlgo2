@@ -85,11 +85,7 @@ public class BST {
 		return true;
 	}
 
-	public int function(int counter) {
-		if(counter == 5)
-			return 0;
-		return function(++counter) + 1;
-	}
+	
 	
 	public void insertRandom(int value) {
 		Node node = new Node(value);
