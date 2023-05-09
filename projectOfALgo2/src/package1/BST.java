@@ -269,4 +269,24 @@ public class BST {
 
 		return root;
 	}
+
+	public void printPyramidTree() {
+		printPyramidTree(root, 0, 5);
+	}
+
+	private void printPyramidTree(Node root, int space, int ratio) {
+		// base case
+		if (root == null)
+			return;
+		space += ratio;
+
+		printPyramidTree(root.rightChild, space, ratio);
+
+		System.out.print("\n");
+		for (int i = ratio; i < space; i++)
+			System.out.print("  ");
+		System.out.print(root.value + "\n");
+
+		printPyramidTree(root.leftChild, space, ratio);
+	}
 }

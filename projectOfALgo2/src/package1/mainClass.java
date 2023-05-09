@@ -15,6 +15,14 @@ public class mainClass {
 		tree.insert(6);
 		tree.insert(7);
 		tree.insert(1);
+		tree.printPyramidTree();
+		System.out.println();
+		System.out.println();
+		System.out.println("***********************");
+		System.out.println("***********************");
+		System.out.println("***********************");
+		System.out.println("***********************");
 		tree.convertBSTtoAVL();
+		tree.printPyramidTree();
 	}
 }
