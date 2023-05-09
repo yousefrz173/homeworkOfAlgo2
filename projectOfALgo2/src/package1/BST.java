@@ -61,25 +61,47 @@ public class BST {
 		}
 	}
 
-	private static Vector<Integer> v = new Vector<Integer>();
+	public void delete(int data) {
+		root = delete(root, data);
+	}
 
-	void inorderVector(Node root) {
-		if (root == null) {
-			return;
+	private Node delete(Node root, int data) {
+		if (root == null)
+			return root;
+		if (root.value > data)
+			root.leftChild = delete(root.leftChild, data);
+		else if (root.value < data)
+			root.rightChild = delete(root.rightChild, data);
+		else {
+			if (root.leftChild == null)
+				return root.rightChild;
+			else if (root.rightChild == null)
+				return root.leftChild;
+			else {
+				root.value = maxv(root.leftChild);
+				root.leftChild = delete(root.leftChild, root.value);
+			}
+
 		}
-		inorderVector(root.leftChild);
-		v.add(root.value);
-		inorderVector(root.rightChild);
+		return root;
 	}
 
-	private Node getRoot() {
-		return this.root;
+	int maxv(Node node) {
+		Node temp = node;
+		while (temp != null) {
+			if (temp.rightChild == null) {
+				return temp.value;
+			}
+			temp = temp.rightChild;
+		}
+		return -1;
 	}
 
-	boolean isbst() {
-		this.inorderVector(this.getRoot());
-		for (int i = 0; i < this.v.size() - 1; i++) {
-			if (v.get(i) >= v.get(i + 1))
+	public boolean isbst() {
+		Vector<Integer> nodes = new Vector<Integer>();
+		storeNodesInVectoR(root, nodes);
+		for (int i = 0; i < nodes.size() - 1; i++) {
+			if (nodes.get(i) > nodes.get(i + 1))
 				return false;
 		}
 		return true;
@@ -208,20 +230,20 @@ public class BST {
 		return node.leftChild != null && node.rightChild == null;
 	}
 
-	public int findLargestNode() {
-		if (LargestNode() != null)
-			return LargestNode().value;
-		return -1;
-	}
+//	public int findLargestNode() {
+//		if (LargestNode() != null)
+//			return LargestNode().value;
+//		return -1;
+//	}
 
-	public Node LargestNode() {
+	public int LargestNode() {
 		Node current = root;
 		while (current != null) {
-			if (isLeaf(current) || hasLeftChild(current))
-				return current;
+			if (current.rightChild == null)
+				return current.value;
 			current = current.rightChild;
 		}
-		return null;
+		return -1;
 	}
 
 	public void convertBSTtoAVL() {
@@ -240,6 +262,15 @@ public class BST {
 			storeNodesInVector(root.leftChild, nodes);
 			nodes.add(root);
 			storeNodesInVector(root.rightChild, nodes);
+		}
+		return;
+	}
+
+	private void storeNodesInVectoR(Node root, Vector<Integer> nodes) {
+		if (root != null) {
+			storeNodesInVectoR(root.leftChild, nodes);
+			nodes.add(root.value);
+			storeNodesInVectoR(root.rightChild, nodes);
 		}
 		return;
 	}
@@ -271,7 +302,7 @@ public class BST {
 	}
 
 	public void printPyramidTree() {
-		printPyramidTree(root, 0, 5);
+		printPyramidTree(root, 0, 2);
 	}
 
 	private void printPyramidTree(Node root, int space, int ratio) {
@@ -284,7 +315,7 @@ public class BST {
 
 		System.out.print("\n");
 		for (int i = ratio; i < space; i++)
-			System.out.print("  ");
+			System.out.print("\t");
 		System.out.print(root.value + "\n");
 
 		printPyramidTree(root.leftChild, space, ratio);
