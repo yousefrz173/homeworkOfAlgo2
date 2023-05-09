@@ -244,6 +244,7 @@ public class BST {
 		return;
 	}
 
+	// function for building tree from in order array
 	private Node buildTreeFromArray(Vector<Node> nodes) {
 		if (nodes.size() == 0) {
 			return null;
